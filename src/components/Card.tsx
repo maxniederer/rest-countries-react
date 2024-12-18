@@ -2,9 +2,9 @@ interface Props {
   flag: string;
   flagAlt: string;
   country: string;
-  population: string;
+  population: number;
   region: string;
-  capital: string;
+  capital: string[];
 }
 
 function Card({ flag, flagAlt, country, population, region, capital }: Props) {
@@ -17,7 +17,7 @@ function Card({ flag, flagAlt, country, population, region, capital }: Props) {
           <ul className="country-stats">
             <li>
               <strong>Population: </strong>
-              {population}
+              {population.toLocaleString()}
             </li>
             <li>
               <strong>Region: </strong>
@@ -25,7 +25,7 @@ function Card({ flag, flagAlt, country, population, region, capital }: Props) {
             </li>
             <li>
               <strong>Capital: </strong>
-              {capital}
+              {capital.length == 0 ? "N/A" : capital.join(", ")}
             </li>
           </ul>
         </div>
