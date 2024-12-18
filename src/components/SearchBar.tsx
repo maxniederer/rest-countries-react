@@ -1,6 +1,32 @@
 import { SearchOutline } from "react-ionicons";
 
 function SearchBar() {
+  const select: HTMLSelectElement = document.getElementById(
+    "region-select"
+  ) as HTMLSelectElement;
+  const allCountries = document.getElementsByClassName("country-entry");
+  const regionArray = [
+    document.getElementsByClassName("africa"),
+    document.getElementsByClassName("americas"),
+    document.getElementsByClassName("antarctic"),
+    document.getElementsByClassName("asia"),
+    document.getElementsByClassName("europe"),
+    document.getElementsByClassName("oceania"),
+  ];
+
+  function hideAllCountries() {
+    Array.from(allCountries).forEach((element) => {
+      element.classList.add("hidden");
+    });
+  }
+
+  function updateRegionFilter() {
+    hideAllCountries();
+    Array.from(regionArray[select.selectedIndex - 1]).forEach((element) => {
+      element.classList.remove("hidden");
+    });
+  }
+
   return (
     <>
       <div className="search-bar-wrapper centered">
@@ -27,6 +53,7 @@ function SearchBar() {
             name="region"
             id="region-select"
             className="ui-component region-select"
+            onChange={updateRegionFilter}
           >
             <option value="" selected disabled hidden>
               Filter by Region

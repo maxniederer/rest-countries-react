@@ -64,7 +64,10 @@ function SearchPage() {
       <SearchBar />
       <ul id="country-list" className="country-list centered">
         {countryList.map((country, index) => (
-          <li className="country-entry" key={country.name.common}>
+          <li
+            className={"country-entry " + country.region.toLowerCase()}
+            key={country.name.common}
+          >
             <Card
               flag={country.flags.png}
               flagAlt={country.flags.alt}
