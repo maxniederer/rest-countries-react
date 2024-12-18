@@ -27,6 +27,27 @@ function SearchBar() {
     });
   }
 
+  const search: HTMLInputElement = document.getElementById(
+    "search-country-name"
+  ) as HTMLInputElement;
+  search.addEventListener("keypress", (e) => {
+    updateSearchFilter(e);
+  });
+
+  function updateSearchFilter(event: KeyboardEvent) {
+    if (event.key == "Enter") {
+      hideAllCountries();
+      Array.from(allCountries).forEach((element) => {
+        let countryNameHeading = element.childNodes[0].childNodes[1]
+          .childNodes[0] as HTMLElement;
+        let countryName = countryNameHeading.innerHTML.toLowerCase();
+        if (countryName.includes(search.value.toLowerCase())) {
+          element.classList.remove("hidden");
+        }
+      });
+    }
+  }
+
   return (
     <>
       <div className="search-bar-wrapper centered">
