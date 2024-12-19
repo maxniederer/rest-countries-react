@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ArrowBackOutline } from "react-ionicons";
 import { useParams } from "react-router";
 import { Link } from "react-router";
+import BorderList from "./BorderList.tsx";
 
 const baseUrl: string = `https://restcountries.com/v3.1/name/`;
 
@@ -166,7 +167,7 @@ function DetailsPage() {
                 </div>
                 <div className="neighbors">
                   <strong>Border Countries: </strong>
-                  <ul className="neighbor-list">{/* {bordersStr} */}</ul>
+                  <BorderList borders={countryDetails[0].borders!} />
                 </div>
               </div>
             </>
