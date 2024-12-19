@@ -7,7 +7,7 @@ function Header() {
       <header className="header-wrapper">
         <div className="header centered">
           <h1>
-            <a href="/">Where in the world?</a>
+            <a>Where in the world?</a>
           </h1>
           <button className="btn dark-mode-btn" onClick={toggleTheme}>
             <MoonOutline

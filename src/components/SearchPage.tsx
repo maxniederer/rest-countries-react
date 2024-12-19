@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "./Card.tsx";
 import SearchBar from "./SearchBar.tsx";
-// import initCountryList from "../data.tsx";
+import { Link } from "react-router";
 
 const url =
   "https://restcountries.com/v3.1/all?fields=name,flags,capital,population,region";
@@ -27,31 +27,20 @@ async function fetchApi(): Promise<Country[]> {
     throw new Error(`${response.status}`);
   }
   const json = await response.json();
-  // console.log("json", json);
   return json;
-
-  // try {
-  //   const response = await fetch(url);
-  //   if (!response.ok) {
-  //     throw new Error(`${response.status}`);
-  //   }
-  //   const json = await response.json();
-  //   console.log(json);
-  // }
-  // catch(err) {
-  //   console.log(err);
-  // }
 }
 
 function SearchPage() {
   const [countryList, setCountryList] = useState<Country[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
       try {
         const data = await fetchApi();
         setCountryList(data);
-        console.log(countryList);
+        // console.log(countryList);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -63,21 +52,30 @@ function SearchPage() {
     <>
       <SearchBar />
       <ul id="country-list" className="country-list centered">
-        {countryList.map((country, index) => (
-          <li
-            className={"country-entry " + country.region.toLowerCase()}
-            key={country.name.common}
-          >
-            <Card
-              flag={country.flags.png}
-              flagAlt={country.flags.alt}
-              country={country.name.common}
-              population={country.population}
-              region={country.region}
-              capital={country.capital}
-            />
-          </li>
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          countryList.map((country) => (
+            <li
+              className={"country-entry " + country.region.toLowerCase()}
+              key={country.name.common}
+            >
+              <Link
+                to={"/details/" + country.name.common.toLowerCase()}
+                className="country-link"
+              >
+                <Card
+                  flag={country.flags.png}
+                  flagAlt={country.flags.alt}
+                  country={country.name.common}
+                  population={country.population}
+                  region={country.region}
+                  capital={country.capital}
+                />
+              </Link>
+            </li>
+          ))
+        )}
       </ul>
     </>
   );
