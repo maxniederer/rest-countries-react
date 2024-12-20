@@ -1,7 +1,3 @@
-import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
-// import "./App.css";
 import SearchPage from "./components/SearchPage.tsx";
 import DetailsPage from "./components/DetailsPage.tsx";
 import NotFoundPage from "./components/NotFoundPage.tsx";
@@ -27,7 +23,6 @@ function App() {
       <Header />
       <main id="main-root">
         <RouterProvider router={router} />
-        {/* <SearchPage /> */}
       </main>
       <Footer />
     </>

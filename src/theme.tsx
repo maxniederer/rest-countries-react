@@ -1,6 +1,3 @@
-const darkModeIcon = document.getElementById("dark-mode-icon");
-const darkModeText = document.getElementById("dark-mode-text");
-
 let currThemeCookie = localStorage.getItem("theme");
 const darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 if (!currThemeCookie) {

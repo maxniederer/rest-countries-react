@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
 
 interface Props {
   borders: string[];
