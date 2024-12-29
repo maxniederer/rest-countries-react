@@ -62,7 +62,7 @@ function DetailsPage() {
   }, []);
 
   function getNativeNameString(data: CountryDetails): string {
-    if (data.name.nativeName.length == 0) return "N/A";
+    if (!data.name.nativeName || data.name.nativeName.length == 0) return "N/A";
     let stringList = [],
       i = 0;
     for (var x in data.name.nativeName) {
@@ -73,7 +73,7 @@ function DetailsPage() {
   }
 
   function getLanguagesString(data: CountryDetails): string {
-    if (data.languages!.length == 0) return "N/A";
+    if (!data.languages! || data.languages!.length == 0) return "N/A";
     let stringList = [],
       i = 0;
     for (var x in data.languages!) {
@@ -84,7 +84,7 @@ function DetailsPage() {
   }
 
   function getCurrenciesString(data: CountryDetails): string {
-    if (data.currencies!.length == 0) return "N/A";
+    if (!data.currencies! || data.currencies!.length == 0) return "N/A";
     let stringList = [],
       i = 0;
     for (var x in data.currencies!) {
@@ -143,7 +143,8 @@ function DetailsPage() {
                     </li>
                     <li>
                       <strong>Capital: </strong>
-                      {countryDetails[0].capital.length == 0
+                      {!countryDetails[0].capital ||
+                      countryDetails[0].capital.length == 0
                         ? "N/A"
                         : countryDetails[0].capital.join(", ")}
                     </li>
