@@ -46,6 +46,7 @@ async function fetchApi(str: string): Promise<CountryDetails[]> {
 function DetailsPage() {
   const [countryDetails, setCountryDetails] = useState<CountryDetails[]>([]);
   const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(true);
   const params = useParams();
 
   useEffect(() => {
@@ -53,9 +54,13 @@ function DetailsPage() {
       try {
         const data = await fetchApi(params.countryId!);
         setCountryDetails(data);
+        setFailed(false);
         setLoading(false);
       } catch (err) {
         console.log(err);
+        setFailed(true);
+        setLoading(false);
+        //asdfhasdjkfhjasdf!                !!!!!!!!!!!!!!
       }
     }
     getData();
@@ -112,6 +117,16 @@ function DetailsPage() {
         <div className="details-holder">
           {loading ? (
             <p>Loading...</p>
+          ) : failed ? (
+            <>
+              <div className="centered error">
+                <h1>Not Found</h1>
+                <p>
+                  Failed to fetch country. Please make sure you entered the
+                  country's name correctly in the URL.
+                </p>
+              </div>
+            </>
           ) : (
             <>
               <img
