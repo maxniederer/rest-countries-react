@@ -68,13 +68,21 @@ function DetailsPage() {
 
   function getNativeNameString(data: CountryDetails): string {
     if (!data.name.nativeName || data.name.nativeName.length == 0) return "N/A";
-    let stringList = [],
-      i = 0;
+
+    let str = "";
     for (var x in data.name.nativeName) {
-      stringList[i] = data.name.nativeName[x].official;
-      i++;
+      str = data.name.nativeName[x].official;
+      break;
     }
-    return stringList.join(", ");
+    return str;
+
+    // let stringList = [],
+    //   i = 0;
+    // for (var x in data.name.nativeName) {
+    //   stringList[i] = data.name.nativeName[x].official;
+    //   i++;
+    // }
+    // return stringList.join(", ");
   }
 
   function getLanguagesString(data: CountryDetails): string {
