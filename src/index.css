@@ -358,6 +358,10 @@ strong {
     gap: clamp(32px, -209.8462px + 24.6154vw, 120px);
   }
 
+  .details-holder:has(.error) {
+    grid-template-columns: 1fr;
+  }
+
   .neighbors {
     flex-direction: row;
   }
